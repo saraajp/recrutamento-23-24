@@ -102,6 +102,58 @@ body {
     transform: translateY(-100%);
 }
 
+.search-box::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    left: 80%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent darkred transparent;
+}
+
+.search-box{
+    position: absolute;
+    top: 70px;
+    right: 70px;
+    height: 100px;
+    width: 300px;
+    border-top: 4px solid darkred;
+    background: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(20px); /* Start with translateY(20px) for a bit of offset */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Add transitions for opacity and transform */
+}
+
+.search-input {
+    height: 34px;
+    width: 200px;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #c5c4c4;
+    box-sizing: border-box;
+}
+
+.search-button {
+    height: 100%;
+    width: 60px;
+    margin: 0;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
 .main-top-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

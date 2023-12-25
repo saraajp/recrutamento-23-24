@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>OtakuPT - Réplica</title>
 </head>
-<body>
+<body id="body">
     <div class="header-background">
             <div class="content menu">
                 <div class="logo-container">
@@ -77,12 +77,18 @@
                 <a class="social-media" href="https://www.youtube.com/user/otakuptHD">
                     <img class="social-media-icon" alt="youtube" src="images/youtube.svg"/>
                 </a>
-                <div class="search">
+                <div class="search" id="openSearchbox">
                     <img class="social-media-icon" alt="search" src="images/search.svg"/>
                 </div>
             </div>
     </div>
     <div class="content">
+        <div class="search-box" id="searchbox">
+            <input class="search-input" type="text" placeholder="">
+            <a href="https://www.otakupt.com/?s=">
+                <button class="search-button">Buscar</button>
+            </a>
+        </div>
         <div class="main-top-section">
             <a class="main-top-news-link" id="main-top-news-link-1" href="https://www.otakupt.com/o-que-estamos-a-ver/o-que-estamos-a-ver-24-de-dezembro-de-2023/">
                 <div class="main-top-news" id="main-top-news-1">
@@ -389,6 +395,33 @@
 <script>
     // Get the button:
     let mybutton = document.getElementById("ScrollToTop");
+    var searchbox = document.getElementById('searchbox');
+    var openButton = document.getElementById('openSearchbox');
+  
+    // Function to open the popup
+    function toggleSearchBox(event) {
+      event.stopPropagation();
+      if (searchbox.style.opacity === '1') {
+        // If the search box is visible, hide it
+        searchbox.style.opacity = '0';
+        searchbox.style.transform = 'translateY(20px)'; // Reset the offset
+        setTimeout(() => searchbox.style.display = 'none', 300); // After the transition, set display to 'none'
+      } else {
+        // If the search box is hidden, show it
+        searchbox.style.display = 'flex';
+        setTimeout(() => {
+          searchbox.style.opacity = '1';
+          searchbox.style.transform = 'translateY(0)';
+        }, 0);
+      }
+    }
+  
+    // Function to close the popup
+    function closeSearchBox() {
+        searchbox.style.opacity = '0';
+        searchbox.style.transform = 'translateY(20px)'; // Reset the offset
+        setTimeout(() => searchbox.style.display = 'none', 300); // After the transition, set display to 'none'
+    }
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
@@ -406,5 +439,15 @@
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
+
+    // Event listeners
+    openButton.addEventListener('click', toggleSearchBox);
+      // Close search box if clicked outside of it
+    document.addEventListener('click', function(event) {
+        if (!searchbox.contains(event.target) && event.target !== openButton) {
+            closeSearchBox();
+        }
+    });
+
 </script>
 </html>
