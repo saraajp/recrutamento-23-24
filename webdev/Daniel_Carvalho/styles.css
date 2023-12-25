@@ -25,6 +25,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width:1030px;
+    position: relative;
 }
 
 .menu li {
@@ -115,8 +116,8 @@ body {
 
 .search-box{
     position: absolute;
-    top: 70px;
-    right: 70px;
+    top: -30px;
+    right: -43px;
     height: 100px;
     width: 300px;
     border-top: 4px solid darkred;
@@ -152,6 +153,93 @@ body {
     color: white;
     font-size: 12px;
     box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.search-button:hover {
+    background-color: darkred;
+}
+
+.category-popup{
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    height: 330px;
+    width: 100%;
+    background: rgb(23, 22, 22);
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 12px;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+.category-popup-news {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    height: 250px;
+    width: 100%;
+}
+
+.category-popup-news-link {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    text-align: start;
+    font-size: 12px;
+}
+
+.category-popup-news-link:hover {
+    color: darkred;
+}
+
+.category-popup-news-image {
+    height: 150px;
+    width: 190px;
+    object-fit: cover;
+}
+
+.scroll-popup {
+    display: flex;
+    align-items: center;
+    justify-content: start;  
+}
+
+.scroll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #767676;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.scroll:hover {
+    background-color: darkred;
+}
+
+.scroll-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    filter: brightness(50%);
+}
+
+.scroll-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .main-top-section {
@@ -272,13 +360,27 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, min-content);
-    grid-gap: 20px;
+    grid-row-gap: 20px;
+    grid-column-gap: 0;
     margin-top: 30px;
 }
 
 .news-mid {
     grid-row: span 1;
     grid-row: span 1;
+}
+
+#news-mid-1 {
+    padding-right: 10px;
+}
+
+#news-mid-2 {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#news-mid-3 {
+    padding-left: 10px;
 }
 
 .news-mid-image {
@@ -288,10 +390,12 @@ body {
 
 .news-mid-link {
     text-decoration: none;
+    width:100%;
     color: black;
     font-size: 20px;
     transition: 0.3s;
     text-align: start;
+    box-sizing: border-box;
 }
 
 .news-mid-link:hover {
