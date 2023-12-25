@@ -176,6 +176,10 @@ body {
     z-index: 5;
 }
 
+.category-popup.visible {
+    display: flex;
+}
+
 .category-popup-news {
     display: flex;
     align-items: start;
