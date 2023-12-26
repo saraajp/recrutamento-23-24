@@ -25,5 +25,11 @@ Position was used mainly for popups.
 In the file ```images```, there exists severals icons in the format of .svg, used throughout the site, beign sourced from Google Material Icons, Bootsrap Icons and IconMonstr. There also exists the favicon.
 There exists a directory called ```news```, that houses the images used to indicate news, some being re-used in several places.
 
+The website was done to have a max-width of 1030px, since it looked like they were using around the same
+size for max-width, maybe slightly larger in main content.
+
+My website has a different font, since, even though I did not copy all of the options they had fro their
+website, I copied some of what they have, but didn't render the same. Probably had to link some of those fonts in header of the HTML. But since it can be a copy that is different then the original, I went with the font that i thought was fitting.
+
 
 
