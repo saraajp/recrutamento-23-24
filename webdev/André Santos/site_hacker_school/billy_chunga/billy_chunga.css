@@ -1,0 +1,11 @@
+body {
+    color: #009e3a;
+}
+
+.botao {        
+    background-color: #009e3a;
+}
+
+.botao:hover {
+    background-color: #3aba69; 
+}
