@@ -1,0 +1,5 @@
+Para correr o programa é preciso ter o Python instalado na vossa máquina (versão 3 ou superior)
+
+Depois basta abrir o terminal no caminho do repositório e correr o comando "python3 Gestor\ de\ tarefas.py"
+
+Feito
