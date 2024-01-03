@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QCalendarWidget, QLabel, QPushButton, QLineEdit, QMessageBox, QListWidget, QTimeEdit
-from PyQt5.QtCore import QDate
+from PyQt5.QtCore import QDate,QTime
 
 class TaskManagerApp(QMainWindow):
     def __init__(self):
@@ -42,6 +42,7 @@ class TaskManagerApp(QMainWindow):
         self.task_viewer = QListWidget(self)  # Cria um widget de lista para exibir as tarefas
         self.task_viewer.setGeometry(100, 500, 500, 500)  # Aumenta a altura do widget de lista
         self.layout.addWidget(self.task_viewer)  # Adiciona o widget de lista ao layout
+        self.task_viewer.itemDoubleClicked.connect(self.edit_task)  # Conecta o sinal de clique duplo do item ao método edit_task
 
     def on_date_selected(self):
         selected_date = self.calendar.selectedDate()  # Obtém a data selecionada no calendário
@@ -62,6 +63,20 @@ class TaskManagerApp(QMainWindow):
             self.task_time_input.clear()  # Limpa o campo de entrada da hora da tarefa
             self.display_tasks(self.tasks)  # Exibe as tarefas atualizadas
 
+    def edit_task(self, item):
+        index = self.task_viewer.row(item)  # Obtém o índice do item selecionado
+        task = self.tasks[index]  # Obtém a tarefa correspondente ao índice
+        task_name = task['name']
+        task_desc = task['description']
+        task_time = task['time']
+        self.task_name_input.setText(task_name)  # Preenche o campo de entrada do nome da tarefa com o nome da tarefa selecionada
+        self.task_desc_input.setText(task_desc)  # Preenche o campo de entrada da descrição da tarefa com a descrição da tarefa selecionada
+        self.task_time_input.setTime(QTime.fromString(task_time, "hh:mm"))  # Preenche o campo de entrada da hora da tarefa com a hora da tarefa selecionada
+
+        # Remove the task from the list
+        self.tasks.pop(index)
+        self.display_tasks(self.tasks)  # Exibe as tarefas atualizadas
+
     def display_tasks(self, tasks):
         self.task_viewer.clear()  # Limpa o widget de lista de tarefas
         for task in tasks:
@@ -73,18 +88,14 @@ class TaskManagerApp(QMainWindow):
         if reply == QMessageBox.Yes:
             confirm_reply = QMessageBox.question(self, 'Fechar Janela', 'Tens mm a certeza?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if confirm_reply == QMessageBox.Yes:
-                replyaserio= QMessageBox.question(self, 'Fechar Janela', 'Fr?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-                if replyaserio == QMessageBox.Yes:
-                    event.accept()
-                else:
-                    event.ignore()
+                event.accept()
             else:
                 event.ignore()
         else:
             event.ignore()
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)  # Cria uma instância da aplicação
-    task_manager = TaskManagerApp()  # Cria uma instância da classe TaskManagerApp
-    task_manager.show()  # Exibe a janela
-    sys.exit(app.exec_())  # Executa o loop de eventos da aplicação
+    app = QApplication(sys.argv)
+    window = TaskManagerApp()
+    window.show()
+    sys.exit(app.exec_())
