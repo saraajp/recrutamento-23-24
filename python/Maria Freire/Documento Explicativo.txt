@@ -1,0 +1,11 @@
+O QUE É O PLANEADOR DE TAREFAS
+- O planeador de tarefas tem como principais funções adicionar, remover e editar tarefas. 
+- Tem implementado um calendário muito simples que tem os dias dos meses do ano de 2024, em formato de calendário, mas não tem os dias da semana. Por baixo de cada mês são impressas as tarefas para esse mesmo mês, com a indicação do dia.
+
+COMPILAR E EXECUTAR
+- Para compilar o programa eu abro o ficheiro (que está na pasta) no IDLE do python e corro-o no IDLE Shell
+
+ALGUMA INFORMAÇÕES ADICIONAIS PARA O USUÁRIO
+- Sempre que é pedido um input não é necessário (principalmente para a inserção dos meses e dias) colocá-lo entre aspas, uma vez que no programa é transformado em string. É apenas necessário escrevê-lo como é indicado e dar Enter.
+- Os comandos principais (adicionar, remover e editar tarefas + aceder comandos, menu, tarefas e calendário) são apenas passíveis de ser acedidas quando é dito, ou seja, não é possível acedê-las quando se entra nas funções principais (quando se escolhe p.e. editar uma tarefa, dá-se o input das informações necessárias para isso - dia, mês, título e descrição -, como é pedido, e não o input para aceder p.e. aos comandos)
+- É necessário dar input da palavra "exit" para o programa parar de correr (ou seja, sair do ciclo do while)
