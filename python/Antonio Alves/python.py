@@ -22,6 +22,9 @@ class TaskManagerApp(QMainWindow):
         self.add_button = QPushButton("Adicionar Tarefa", self)  # Cria um botão para adicionar tarefa
         self.add_button.clicked.connect(self.add_task)  # Conecta o sinal de clique do botão ao método add_task
 
+        self.remove_button = QPushButton("Remover Tarefa", self)  # Cria um botão para remover tarefa
+        self.remove_button.clicked.connect(self.remove_selected_task)  # Conecta o sinal de clique do botão ao método remove_selected_task
+
         self.layout = QVBoxLayout()  # Cria um layout vertical
         self.layout.addWidget(self.calendar)  # Adiciona o widget de calendário ao layout
         self.layout.addWidget(self.task_label)  # Adiciona o rótulo da seção de adicionar tarefa ao layout
@@ -32,6 +35,7 @@ class TaskManagerApp(QMainWindow):
         self.layout.addWidget(self.task_time_label)  # Adiciona o rótulo do campo de hora da tarefa ao layout
         self.layout.addWidget(self.task_time_input)  # Adiciona o campo de entrada da hora da tarefa ao layout
         self.layout.addWidget(self.add_button)  # Adiciona o botão de adicionar tarefa ao layout
+        self.layout.addWidget(self.remove_button)  # Adiciona o botão de remover tarefa ao layout
 
         self.central_widget = QWidget(self)  # Cria um widget central
         self.central_widget.setLayout(self.layout)  # Define o layout do widget central
@@ -63,6 +67,16 @@ class TaskManagerApp(QMainWindow):
             self.task_time_input.clear()  # Limpa o campo de entrada da hora da tarefa
             self.display_tasks(self.tasks)  # Exibe as tarefas atualizadas
 
+    def remove_selected_task(self):
+        selected_items = self.task_viewer.selectedItems()  # Obtém os itens selecionados na lista de tarefas
+        if not selected_items:
+            QMessageBox.warning(self, "Nenhuma Tarefa Selecionada", "Selecione uma tarefa para remover.")  # Exibe uma mensagem de aviso se nenhum item estiver selecionado
+        else:
+            for item in selected_items:
+                index = self.task_viewer.row(item)  # Obtém o índice do item selecionado
+                self.tasks.pop(index)  # Remove a tarefa da lista de tarefas
+            self.display_tasks(self.tasks)  # Exibe as tarefas atualizadas
+
     def edit_task(self, item):
         index = self.task_viewer.row(item)  # Obtém o índice do item selecionado
         task = self.tasks[index]  # Obtém a tarefa correspondente ao índice
@@ -88,14 +102,18 @@ class TaskManagerApp(QMainWindow):
         if reply == QMessageBox.Yes:
             confirm_reply = QMessageBox.question(self, 'Fechar Janela', 'Tens mm a certeza?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if confirm_reply == QMessageBox.Yes:
-                event.accept()
+                replyaserio= QMessageBox.question(self, 'Fechar Janela', 'Fr?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+                if replyaserio == QMessageBox.Yes:
+                    event.accept()
+                else:
+                    event.ignore()
             else:
                 event.ignore()
         else:
             event.ignore()
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = TaskManagerApp()
-    window.show()
-    sys.exit(app.exec_())
+    app = QApplication(sys.argv)  # Cria uma instância da aplicação
+    task_manager = TaskManagerApp()  # Cria uma instância da classe TaskManagerApp
+    task_manager.show()  # Exibe a janela
+    sys.exit(app.exec_())  # Executa o loop de eventos da aplicação
